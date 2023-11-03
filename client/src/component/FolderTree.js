@@ -19,6 +19,13 @@ const FolderTree = ({explorerData}) => {
     })
    }
 
+   const onAddFolder = (e)=>{
+      if(e.keyCode === 13 && e.target.value){
+         //add logic
+         setShowInput({...showInput, visible:false})
+      }
+   }
+
    if (explorerData.isFolder) {
     return (
            <div style={{ marginLeft: "5px" }}>
@@ -38,6 +45,7 @@ const FolderTree = ({explorerData}) => {
            <input
               type="text"
               className="inputContainer__input"
+              onKeyDown={onAddFolder}
               autoFocus
               onBlur={() => setShowInput({ ...showInput, visible: false })}
               />
