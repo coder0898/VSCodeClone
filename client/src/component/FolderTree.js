@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FolderTree = ({explorerData}) => {
+const FolderTree = ({ handleInsertFolder, explorerData}) => {
 
    const [expand, setExpand] = useState(false);
    const [showInput, setShowInput] = useState({
@@ -22,6 +22,7 @@ const FolderTree = ({explorerData}) => {
    const onAddFolder = (e)=>{
       if(e.keyCode === 13 && e.target.value){
          //add logic
+         handleInsertFolder(explorerData.id, e.target.value, showInput.isFolder);
          setShowInput({...showInput, visible:false})
       }
    }
@@ -55,7 +56,7 @@ const FolderTree = ({explorerData}) => {
 
              {
                 explorerData.items.map((exp)=>{
-                    return <FolderTree explorerData={exp}  key={exp.id}/>
+                    return <FolderTree handleInsertFolder={handleInsertFolder} explorerData={exp}  key={exp.id}/>
                 })
              }
            </div>
